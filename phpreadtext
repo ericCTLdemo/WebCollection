@@ -1,0 +1,10 @@
+<?php
+$path = "./uploads/sample.txt";
+$handle = fopen($path,"r+") or die("unable to open file!");
+echo fread($handle,filesize($path));
+echo "<br/>"."hello eric";
+
+
+fclose($handle);
+
+?>
