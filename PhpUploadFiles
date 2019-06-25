@@ -1,0 +1,34 @@
+/* This code is for uploading files in to the server
+ php code */
+
+<html>
+<body>
+	<div id="header" align=right>
+	<form method="post" enctype="multipart/form-data" >
+    <label>Select CSV File:</label>
+    <input type="file" name="uploaded_file" />
+    <input type="submit" name="submit" value="Import" class="btn btn-info" />
+	</form>
+	</div>
+</body>
+</html>
+
+
+<?php
+if (isset($_POST["submit"])) {
+	echo "is pressed";
+  if(!empty($_FILES['uploaded_file']))
+  {
+    $path = "./uploads/";
+    $path = $path . basename( $_FILES['uploaded_file']['name']);
+
+    if(move_uploaded_file($_FILES['uploaded_file']['tmp_name'], $path)) {
+      echo "The file ".  basename( $_FILES['uploaded_file']['name']). " has been uploaded";
+	  
+    } else{
+        echo "There was an error uploading the file, please try again!";
+    }
+  }
+}
+
+?>
