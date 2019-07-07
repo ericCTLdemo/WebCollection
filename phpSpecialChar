@@ -1,0 +1,14 @@
+ $filename = explode(".", $_FILES['file']['name']);
+  if($filename[1] == 'csv')
+  {
+   $handle = fopen($_FILES['file']['tmp_name'], "r");
+
+ 	  //script to conver csv to portal readable 
+	$outstring = fread($handle,filesize($_FILES['file']['tmp_name']));  
+    $csvmod = str_replace('"",""','","', $outstring);
+    echo $_FILES['file']['tmp_name'];
+	$myfile = fopen("csvout.csv", w);
+	fwrite($myfile,$csvmod);  
+	$handle2 = fopen("csvout.csv", r);     
+
+   while($data = fgetcsv($handle2))
